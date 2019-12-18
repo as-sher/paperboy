@@ -11,16 +11,16 @@ import json
 from base64 import b64decode
 
 # Base Job Operators
-from paperboy.scheduler.airflow_operators import JobOperator, JobCleanupOperator
+from paperboy.scheduler.airflow.airflow_operators import JobOperator, JobCleanupOperator
 
 # Base Report Operators
-from paperboy.scheduler.airflow_operators import ReportOperator, ReportPostOperator
+from paperboy.scheduler.airflow.airflow_operators import ReportOperator, ReportPostOperator
 
 # Convert Operators
-from paperboy.scheduler.airflow_operators import PapermillOperator, NBConvertOperator
+from paperboy.scheduler.airflow.airflow_operators import PapermillOperator, NBConvertOperator
 
 # Publish operators
-from paperboy.scheduler.airflow_operators import VoilaOperator, DokkuOperator
+from paperboy.scheduler.airflow.airflow_operators import VoilaOperator, DokkuOperator
 
 from airflow import DAG
 from datetime import timedelta, datetime
@@ -73,7 +73,7 @@ default_operator_args = {
     'priority_weight': 1,
     'weight_rule': u'downstream',
     'queue': 'default',
-    'pool': None,
+    'pool': 'default_pool',
     'sla': None,
     'execution_timeout': None,
     'on_failure_callback': None,
